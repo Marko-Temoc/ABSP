@@ -10,6 +10,5 @@ def collatz(number):
 
 
 inp = int(input("Input an integer here: \n"))
-collatz(inp)
-
-#only does the thing once
+while inp != 1:
+    inp = collatz(inp)
