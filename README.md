@@ -4,6 +4,6 @@ This repo is for organizing all my Python programs being created during the cour
 
 ## Todos
 - [ ] Go back, review, and answer practice questions from chapters:
-  - [ ] 1
-  - [ ] 2
+  - [x] 1
+  - [x] 2
   - [ ] 3
