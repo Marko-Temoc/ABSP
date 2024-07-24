@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # mclip.py a multi-clipboard program
 TEXT = {'agree': """Yes, I agree that sounds fine to me.""",
         'busy': """Sorry, can we do this later this week or next week?""",
