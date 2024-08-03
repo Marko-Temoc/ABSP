@@ -11,5 +11,9 @@ httRegex = re.compile(r'''(
 text = pyperclip.paste()
 
 # TODO find all matches in the text
+#takes text, uses findall to output matches as tuples in a list, and for every tuple..
+for anymatch in httRegex.findall(text):
+    #recombine strings in tuple into one big string again
+
 # TODO neatly format matches into a single string to paste as output
 # TODO display info if there were no matches
