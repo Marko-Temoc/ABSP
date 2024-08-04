@@ -15,7 +15,7 @@ matches = []
 # TODO find all the url addresses that were found
 #take every tuple in the list, reconstruct into the full html, and add to a list
 for amatch in httRegex.findall(text):
-    matches.append(str(amatch))
+    matches.append(''.join(amatch))
 print(matches)
 # TODO put all the results in one tidy string with newlines at the end
 # TODO print out string if matches were there, and print something else otherwise
