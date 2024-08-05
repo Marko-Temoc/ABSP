@@ -4,7 +4,7 @@ import pyperclip, re
 
 httRegex = re.compile(r'''(
     (https?://)
-    ([a-zA-Z]{2,3}\.)?
+    ([a-zA-Z]{2,4}\.)?
     (\w+)
     (\.[a-zA-Z]{2,4}))''', re.VERBOSE)
 
