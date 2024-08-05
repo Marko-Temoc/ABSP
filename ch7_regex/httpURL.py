@@ -3,10 +3,12 @@
 import pyperclip, re
 
 httRegex = re.compile(r'''(
-    (https?://)
-    ([a-zA-Z]{2,4}\.)?
-    ([\w-]+)
-    (\.[a-zA-Z]{2,4}))''', re.VERBOSE)
+    (https?://)                                 #http or https, //:
+    ([a-zA-Z]{2,4}\.)?                          #2-4 www. field
+    ([\w-]+)                                    #main body of url
+    (\.[a-zA-Z]{2,4})                           #end of main body, .com field
+    ((/[\w]+)?)+                                #optional one or more '/text' fields at end
+    )''', re.VERBOSE)
 
 text = str(pyperclip.paste())
 matches = []
