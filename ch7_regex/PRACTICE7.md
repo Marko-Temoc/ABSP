@@ -1,4 +1,4 @@
-1. re.complile()
+1. re.compile()
 2. so backslashes are properly detected
 3. a regex object
 4. `.group()` or `.groups` methods
