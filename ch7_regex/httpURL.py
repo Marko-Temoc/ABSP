@@ -18,3 +18,6 @@ if len(matches) > 0:
     print('\n'.join(matches))
 else:
     print("No urls starting with 'http://' or 'https://' detected.")
+
+#TODO better comment the parts of the url sections
+#TODO improve regex to capture rest of the url with forward slashes
