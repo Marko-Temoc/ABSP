@@ -26,5 +26,7 @@ match shortest possible match
 re.DOTALL is used
 18. 'X drummers, X pipers, five rings, X hens'
 19. structure and comment the regex within itself
-20. 
+20. `^(\d{1,3})(,\d{3})*$` specifies capturing numbers with up to 3 digits,
+but no more, unless its one or more ",\d\d\d" patterns following
 21. 
+22. 
