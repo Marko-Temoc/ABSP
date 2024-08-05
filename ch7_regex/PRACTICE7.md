@@ -3,10 +3,10 @@
 3. a regex object
 4. `.group()` or `.groups` methods
 5. all text, all groups
-6. preced with backslash
+6. precede with backslash
 7. `.findall()` returns a list of strings if
 there are no groups in the regex pattern,
-returns list of tuples with each group an
+returns list of tuples with each group as an
 item in each tuple
 8. or
 9. non-greedy match, and optional
@@ -22,7 +22,7 @@ possible match, `.*?` is non-greedy and will
 match shortest possible match
 15. [0-9a-z]
 16. `re.compile(string, [re.I])`
-17. matches everyting except `\n`, unless
+17. matches everything except `\n`, unless
 re.DOTALL is used
 18. 'X drummers, X pipers, five rings, X hens'
 19. structure and comment the regex within itself
