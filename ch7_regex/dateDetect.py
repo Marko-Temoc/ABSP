@@ -6,8 +6,12 @@
 #months range 01-12
 #years range 1000-2999
 
-#TODO create regex to match format;it'll accept nonexistent dates like '31/02/2020' for example
-dateRegex = re.compile(r'')
+#TODO create regex to match format real DD/MM/YYYY dates (ignoring leap year logic)
+dateRegex = re.compile(r'''(
+    /    #DD: beginning of date must be 01-31
+    /       #MM: 01-12
+    [12]\d{3}                #YYYY: 1000-2999
+    )''', re.VERBOSE)
 #TODO store these strings in variables: day, month, year
 #TODO detect if altogether this is a valid date
 #NOTE April, June, September, and November have 30 days; February has 28 days; every other month 31
