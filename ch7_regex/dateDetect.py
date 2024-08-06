@@ -7,6 +7,7 @@
 #years range 1000-2999
 
 #TODO create regex to match format;it'll accept nonexistent dates like '31/02/2020' for example
+dateRegex = re.compile(r'')
 #TODO store these strings in variables: day, month, year
 #TODO detect if altogether this is a valid date
 #NOTE April, June, September, and November have 30 days; February has 28 days; every other month 31
