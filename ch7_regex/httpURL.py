@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
+#https? url finder - works for the average url
 
 import pyperclip, re
 
 httRegex = re.compile(r'''(
-    (https?://)                                  #http or https, //:
-    ([a-zA-Z]{2,4}\.)?                           #2-4 www. field
-    ([\w-]+)                                     #main body of url
-    (\.[a-zA-Z]{2,4})+                           #end of main body, .com field
-    ((/[\w-]+)?)+                                #optional one or more '/text' fields at end
+    (https?://)                                  #http or https followed by //:
+    ([a-zA-Z]{2,4}\.)?                           #one or more www. or docs. fields
+    ([\w~.:;?#!$&*+%=-]+)                        #body of url
+    (\.[a-zA-Z]{2,4})+                           #one or mroe .com endings
+    (/[\w~:;?#!$&*+%=-]+)*                       #optional one or more '/text' fields at end
+    [^.\])]                                      #don't match ending period or parentheses
     )''', re.VERBOSE)
 
 text = str(pyperclip.paste())
