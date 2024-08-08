@@ -8,9 +8,9 @@
 
 #TODO create regex to match format real DD/MM/YYYY dates (ignoring leap year logic)
 dateRegex = re.compile(r'''(
-    /    #DD: beginning of date must be 01-31
-    /       #MM: 01-12
-    [12]\d{3}                #YYYY: 1000-2999
+    ^((0[1-9])|([12]\d)|(3[01]))/   #DD: beginning of date must be 01-31
+    ((0[1-9])|(1[012]))/            #MM: 01-12
+    [12]\d{3}                       #YYYY: 1000-2999
     )''', re.VERBOSE)
 #TODO store these strings in variables: day, month, year
 #TODO detect if altogether this is a valid date
