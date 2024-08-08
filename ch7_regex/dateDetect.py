@@ -17,32 +17,28 @@ dateRegex = re.compile(r'''(
 clipboard = pyperclip.paste()
 
 for amatch in dateRegex.findall(clipboard):
-    #each match will be a tuple where group 1-2 is day, 3-4 is day, and 5 is year
-    day = amatch[2]
-    month = amatch[4]
-    year = amatch[5]
+    #each match will be a tuple where amatch[1] is day, [5] is month, and [8] is year
+    xday = amatch[1]
+    xmonth = amatch[5]
+    xyear = amatch[8]
+    print(f'{xday}/{xmonth}/{xyear}')
 
     #NOTE April, June, September, and November have 30 days; February has 28 days; every other month 31
     #NOTE February has 29 days in leap years
-    if month == ('04' or '06' or '09' or '11') and (day == '31'):
-        print("Nope")
+    if (xmonth == ('04' or '06' or '09' or '11')) and (xday == '31'):
+        print("Invalid date: this month only has 30 days")
 
-    elif (month == '02') and (day == '30' or '31'):
-        print("Nope")
+    elif (xmonth == '02') and (xday == ('30' or '31')):
+        print("Invalid date: this month only goes up to 29 (on leap years)")
 
     #calculate and find out if its a leap year
     #NOTE leap years are every year evenly divisible by 4, except for years evenly divisible by 100, unless the year is also evenly divisible by 400
-    elif (month == '02') and (day == '29'):
-        if (str(year) % 4 == 0) and (
-                (str(year) % 100 != 0)
-                    or (str(year) % 100 == 0) and (str(year) % 400 == 0)):
-            print("Yep")
+    elif (xmonth == '02') and (xday == '29'):
+        if (int(xyear) % 4 == 0) and (
+                (int(xyear) % 100 != 0)
+                    or (int(xyear) % 100 == 0) and (int(xyear) % 400 == 0)):
+            print("Leap Valid date")
         else:
-            print("Nope")
+            print("Leap Invalid date")
     else:
-        print("Yep")
-
-#TESTCODE
-#tester = '22/01/1999'
-#mo = dateRegex.findall(tester)
-#print(mo)
+        print("Valid date")
