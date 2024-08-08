@@ -8,7 +8,6 @@
 
 import re, pyperclip
 
-#TODO create regex to match basic format DD/MM/YYYY dates (ignoring whether its a real date at this stage i.e. february only has 28 but this'll take 31)
 dateRegex = re.compile(r'''(
     ^((0[1-9])|([12]\d)|(3[01]))/   #DD: beginning of date must be 01-31
     ((0[1-9])|(1[012]))/            #MM: 01-12
@@ -17,14 +16,12 @@ dateRegex = re.compile(r'''(
 
 clipboard = pyperclip.paste()
 
-#TODO store these strings in variables: day, month, year
 for amatch in dateRegex.findall(clipboard):
     #each match will be a tuple where group 1-2 is day, 3-4 is day, and 5 is year
-    day = amatch.group(2)
-    month = amatch.group(4)
-    year = amatch.group(5)
+    day = amatch[2]
+    month = amatch[4]
+    year = amatch[5]
 
-    #TODO detect if altogether this is a valid date
     #NOTE April, June, September, and November have 30 days; February has 28 days; every other month 31
     #NOTE February has 29 days in leap years
     if month == ('04' or '06' or '09' or '11') and (day == '31'):
@@ -40,8 +37,10 @@ for amatch in dateRegex.findall(clipboard):
                 (str(year) % 100 != 0)
                     or (str(year) % 100 == 0) and (str(year) % 400 == 0)):
             print("Yep")
+        else:
+            print("Nope")
     else:
-        print("Nope")
+        print("Yep")
 
 #TESTCODE
 #tester = '22/01/1999'
