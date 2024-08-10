@@ -28,5 +28,5 @@ re.DOTALL is used
 19. structure and comment the regex within itself
 20. `^(\d{1,3})(,\d{3})*$` specifies capturing numbers with up to 3 digits,
 but no more, unless its one or more ",\d\d\d" patterns following
-21. 
-22. 
+21. `[A-Z][a-z]+[ _]Watanabe`
+22. `re.compile(r'(Alice|Bob|Carol) (eats|pets|throws) (apples|cats|baseballs).', re.I)`
