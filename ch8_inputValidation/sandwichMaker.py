@@ -12,28 +12,27 @@ Write a program that asks users for their sandwich preferences. The program shou
 Come up with prices for each of these options, and have your program display a total cost after the user enters their selection.
 '''
 
-'''
-pyip.inputMenu(breads)
-pyip.inputMenu(proteins)
-pyip.inputYesNo(cheese)
-pyip.inputMenu(cheese_type)
-pyip.inputInt(how_many_sandwiches)
-'''
 import pyinputplus as pyip
 
-breads = ['wheat', 'white', 'sourdough', 'moldy']
-proteins = ['chicken', 'turkey', 'ham', 'tofu', 'horse']
-cheese_types = ["cheddar", "Swiss", "mozzarella", "'that same horse'"]
-cheese_choice = "no"
-
 def sandwichMaker():
+    breads = {'wheat':1.20, 'white':1.00, 'sourdough':1.15, 'moldy':0.10}
+    proteins = {'chicken':2.00, 'turkey':1.99, 'ham':0.99, 'tofu':2.10, 'horse':3.00}
+    cheese_types = {"cheddar":0.50, "Swiss":0.75, "mozzarella":0.56, "'that same horse'":0.99}
+    cheese_choice = "no"
+    price = 0.00
+
     print('Welcome to the Imaginary Sandwich Shop! Pretend to order a sandwich today!\n')
-    bread_choice = pyip.inputMenu(breads)
-    protein_choice = pyip.inputMenu(proteins)
+    bread_choice = pyip.inputMenu(list(breads.keys()))
+    price += breads.get(bread_choice)
+    protein_choice = pyip.inputMenu(list(proteins.keys()))
+    price += proteins.get(protein_choice)
     answer = pyip.inputYesNo('Would you like cheese on your sandwich?\n')
     if answer == 'yes':
-        global cheese_choice
-        cheese_choice = pyip.inputMenu(cheese_types)
+        cheese_choice = pyip.inputMenu(list(cheese_types.keys()))
+        price += cheese_types.get(cheese_choice)
     how_many_sandwiches = pyip.inputInt("How many of that sandwich do you want?\n", greaterThan=0)
+    price *= how_many_sandwiches
+    price = f'{price:.2f}'
     print(f"All done! You want {how_many_sandwiches} sandwiches with {bread_choice} bread, {protein_choice} protein, and {cheese_choice} cheese!")
+    print(f"\nYour total will be: ${price}")
 sandwichMaker()
