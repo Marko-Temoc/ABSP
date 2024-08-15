@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import pyinputplus as pypi
+import pyinputplus as pyip
 import random, time
 
 numofQuestions = 10
@@ -14,12 +14,12 @@ for questionNumber in range(numofQuestions):
     try:
         #right answers handled by allowRegexes
         #wrong answers handled by blockRegexes, with a custom message
-        pypi.inputStr(prompt, allowRegexes=[('^%s$' % (num1 * num2))],
+        pyip.inputStr(prompt, allowRegexes=[('^%s$' % (num1 * num2))],
                       blockRegexes=[('.*', 'Incorrect!')],
                       timeout=8, limit=3)
-    except pypi.TimeoutException:
+    except pyip.TimeoutException:
         print('Out of time!')
-    except pypi.RetryLimitException:
+    except pyip.RetryLimitException:
         print('Out of tries!')
     except KeyboardInterrupt:
         print('\nThanks for playing!')
