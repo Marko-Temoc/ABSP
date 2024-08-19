@@ -2,23 +2,30 @@
 
 import random, time
 
+corrects = 0
 for questionNumber in range(1,11):
     num1 = random.randint(2,9)
     num2 = random.randint(2,9)
     prompt = f'Q{questionNumber}: {num1} x {num2} = '
     attempts = 0
     while attempts < 3:
+        timer = time.perf_counter()
         answer = input(prompt)
-        if answer == str(num1 * num2):
-            print('Correct!')
+        timer = time.perf_counter() - timer
+        if timer > 8.0:
+            print('Out of time!')
             time.sleep(1)
-            attempts = 0
+            break
+        elif answer == str(num1 * num2):
+            print('Correct!')
+            corrects += 1
+            time.sleep(1)
             break
         else:
             print('Incorrect!')
             attempts += 1
+            if attempts == 3:
+                print('Out of retries!')
             time.sleep(1)
             continue
-
-#TODO find out how to give user 8 seconds to answer questions, before its marked wrong
-#even if they answer correctly after the timer
+print(f"Score: {corrects} / 10 correct!")
