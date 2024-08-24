@@ -32,17 +32,27 @@ for quizNum in range(35):
         #create list of shuffled states
         states = list(capitals.keys())
         random.shuffle(states)
-#loop through all 50 states, making a question for each
-for questionNum in range(50):
-        #get right and wrong answers
-        #grab capital and store as correct answer
-        correctAnswer = capitals[states[questionNum]]
-        #make list of all the capitals of the states
-        wrongAnswers = list(capitals.values())
-        #delete only correct capital from list
-        del wrongAnswers[wrongAnswers.index(correctAnswer)]
-        #pick 3 random wrong answers for list
-        wrongAnswers = random.sample(wrongAnswers, 3)
-        #add right answer to 3 incorrect answers to list
-        answerOptions = wrongAnswers + [correctAnswer]
-        random.shuffle(answerOptions)
+        #loop through all 50 states, making a question for each
+        for questionNum in range(50):
+                #get right and wrong answers
+                #grab capital and store as correct answer
+                correctAnswer = capitals[states[questionNum]]
+                #make list of all the capitals of the states
+                wrongAnswers = list(capitals.values())
+                #delete only correct capital from list
+                del wrongAnswers[wrongAnswers.index(correctAnswer)]
+                #pick 3 random wrong answers for list
+                wrongAnswers = random.sample(wrongAnswers, 3)
+                #add right answer to 3 incorrect answers to list
+                answerOptions = wrongAnswers + [correctAnswer]
+                random.shuffle(answerOptions)
+
+                #write question and answer options to quiz file
+                quizFile.write(f"{questionNum + 1}. What is the capital of {states[questionNum]}?\n")
+                for i in range(4):
+                        quizFile.write(f"       {'ABCD'[i]}. { answerOptions[i]}\n")
+                quizFile.write('\n')
+                #write the answer key to a file
+                answerKeyFile.write(f"{questionNum + 1}. {'ABCD'[answerOptions.index(correctAnswer)]}, ")
+        quizFile.close()
+        answerKeyFile.close()
