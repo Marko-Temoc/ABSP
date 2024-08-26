@@ -30,7 +30,6 @@ for file in os.listdir(cwd):
     mo = usaRegex.search(file)
     if mo == None:
         continue
-    else:
-        newName = mo.group(1) + mo.group(6) + mo.group(5) + mo.group(2) + mo.group(9) + mo.group(10) + mo.group(11)
-        print(f'''Renaming {file} to {newName}...''')
-        shutil.move(file, newName)
+    newName = mo.group(1) + mo.group(6) + mo.group(5) + mo.group(2) + mo.group(9) + mo.group(10) + mo.group(11)
+    print(f'''Renaming {file} to {newName}...''')
+    shutil.move(file, newName)
