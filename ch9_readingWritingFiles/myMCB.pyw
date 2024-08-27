@@ -17,9 +17,10 @@ if len(sys.argv) == 3:
         mcbShelf[sys.argv[2]] = pyperclip.paste()
     elif sys.argv[1].lower() == 'remove':
         if sys.argv[2].lower() == 'all':
-            for key in list(mcbShelf.keys()):
-                del mcbShelf[str(key)]
-        del mcbShelf[sys.argv[2]]
+            for key in mcbShelf.keys():
+                del mcbShelf[key]
+        else:
+            del mcbShelf[sys.argv[2]]
 elif len(sys.argv) == 2:
     #list keywords and load content
     if sys.argv[1].lower() == 'list':
@@ -28,5 +29,6 @@ elif len(sys.argv) == 2:
         pyperclip.copy(mcbShelf[sys.argv[1]])
     time.sleep(30)
     pyperclip.copy('')
+
 
 mcbShelf.close()
