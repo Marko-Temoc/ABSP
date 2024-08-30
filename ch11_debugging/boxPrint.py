@@ -8,7 +8,7 @@ def boxPrint(symbol, width, height):
         raise Exception('Width must be greather than 2.')
     print(symbol * width)
     for i in range(height - 2):
-        print(symbol + (' ' * width - 2)) + symbol)
+        print(symbol + (' ' * (width - 2)) + symbol)
     print(symbol * width)
 for sym, w, h in (('*', 4, 4), ('0', 20, 5), ('x', 1, 3), ('ZZ', 3, 3)):
     try:
