@@ -10,7 +10,7 @@ while not url.endswith('#'):
     res.raise_for_status()
     soup = bs4.BeautifulSoup(res.text, 'html.parser')
     #skip over specific pages that puts program on hold
-    if url.endswith('2198/') or url.endswith('1663/') or url.endswith('1608/'):
+    if url.endswith('2198/') or url.endswith('1663/') or url.endswith('1608/') or url.endswith('1350/'):
         print(f'SKIPPING {url}')
         prevLink = soup.select('a[rel="prev"]')[0]
         url = 'http://xkcd.com' + prevLink.get('href')
