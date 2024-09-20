@@ -11,28 +11,29 @@ if len(sys.argv) > 2 :
 if len(sys.argv) < 2 :
     raise Exception('One argument required: please enter the full url')
 url = sys.argv[1]
-print(type(url))
 assert type(url) == str, 'url should be type str obviouvlys, this is just a first check to make sure that is how it works'
 
 #find every link on the page and put into a list as Tag objects
 responseO = requests.get(url)
 responseO.raise_for_status()
-bsO = bs4.BeautifulSoup(url, 'html.parser')
+bsO = bs4.BeautifulSoup(responseO.text, 'html.parser')
 #list of Tag objects for each a element
 tagO = bsO.select('a[href]')
-assert type(tagO) == list, 'this should be a list right?'
 
-os.makedirs('./link_list')
+os.makedirs('./link_list', exist_ok=True)
 #iterate through tag list and try to download every link
 for tag in tagO:
     link = tag.get('href')
-    assert type(link) == str, 'pretty sure the href should return as a string'
-    assert type(url + link) == str, 'does this url + link thingy work right?'
+    if link == '/':
+        continue
+    print(f'url is {url}')
+    print(f'href is {link}')
+    print(f'both is {url}{link}')
     linkResponse = requests.get(url + link)
     linkResponse.raise_for_status()
     if linkResponse.status_code == 404:
         #TODO print a file in folder with list of 404 broken links
         print(f'''{url}{link} returned a 404 error and wasn't found''')
-    writeFile = open(url + href + '.html', 'wb')
+    writeFile = open(url + link + '.html', 'wb')
     for chunk in linkResponse.iter_content(100000):
         writeFile.write(chunk)
