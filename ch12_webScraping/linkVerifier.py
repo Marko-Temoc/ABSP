@@ -9,6 +9,7 @@ import bs4, requests, sys, os
 if len(sys.argv) > 2 :
     raise Exception('Only one argument allowed: please enter the full url')
 url = sys.argv[1]
+assert url == type(str), 'url should be type str obviouvlys, this is just a first check to make sure that is how it works'
 
 #find every link on the page and put into a list as Tag objects
 responseO = requests.get(url)
@@ -16,11 +17,14 @@ responseO.raise_for_status()
 bsO = bs4.BeautifulSoup(url, 'html.parser')
 #list of Tag objects for each a element
 tagO = bs.select('a[href]')
+assert tag0 == type(list), 'this should be a list right?'
 
 os.makedirs('./link_list')
 #iterate through tag list and try to download every link
 for tag in tag0:
     link = tag.get('href')
+    assert link == type(str), 'pretty sure the href should return as a string'
+    assert url + link == type(str), 'does this url + link thingy work right?'
     linkResponse = requests.get(url + link)
     linkResponse.raise_for_status()
     if linkResponse.status_code == 404:
