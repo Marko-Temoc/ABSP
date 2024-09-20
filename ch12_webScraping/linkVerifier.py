@@ -24,19 +24,20 @@ os.makedirs('link_list', exist_ok=True)
 #iterate through tag list and try to download every link
 for tag in tagO:
     link = tag.get('href')
+    print(f'this is the href: {link}')
     if link == '/':
         continue
     if link.startswith('/') == True:
         linkResponse = requests.get(url + link)
         newURL = url + link
+        print(f'this is the newURL: {newURL}')
     if link.startswith('http') == True:
-        linkResponse = requests.get(url)
-        newURL = url
-    linkResponse.raise_for_status()
+        linkResponse = requests.get(link)
+        newURL = link
+        print(f'this is the newURL: {newURL}')
     if linkResponse.status_code == 404:
         #TODO print a file in folder with list of 404 broken links
         print(f'''{newURL} returned a 404 error and wasn't found''')
-    writeFile = open(, 'wb')
-    for chunk in linkResponse.iter_content(100000):
-        writeFile.write(chunk)
-    writeFile.close()
+    if linkResponse.status_code == 403:
+        #TODO print a file in folder with list of 404 broken links
+        print(f'''{newURL} returned a 403 error and was forbidden''')
