@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-#linkVerifier.py takes a given url and attempts to download all linked pages, flagging any 404 links and printing them out
-#pass the p argument first to print the broken links but don't actually download the linked pages
-#TODO implement p feature
+#linkVerifier.py takes a given url and attempts to download all linked pages, flagging any 404 links and printing
 
 import bs4, requests, sys, os
 
@@ -11,7 +9,6 @@ if len(sys.argv) > 2 :
 if len(sys.argv) < 2 :
     raise Exception('One argument required: please enter the full url')
 url = sys.argv[1]
-assert type(url) == str, 'url should be type str obviouvlys, this is just a first check to make sure that is how it works'
 
 #find every link on the page and put into a list as Tag objects
 responseO = requests.get(url)
@@ -20,7 +17,6 @@ bsO = bs4.BeautifulSoup(responseO.text, 'html.parser')
 #list of Tag objects for each a element
 tagO = bsO.select('a[href]')
 
-os.makedirs('link_list', exist_ok=True)
 #iterate through tag list and try to download every link
 for tag in tagO:
     link = tag.get('href')
@@ -33,13 +29,6 @@ for tag in tagO:
         linkResponse = requests.get(link)
         newURL = link
     if linkResponse.status_code == 404:
-        #TODO print a file in folder with list of 404 broken links
         print(f'''{newURL} returned a 404 error and wasn't found''')
     if linkResponse.status_code == 403:
-        #TODO print a file in folder with list of 404 broken links
         print(f'''{newURL} returned a 403 error and was forbidden''')
-    if newURL.startswith('https://'):
-        nameURL = newURL.rstrip('/').split('/')[-1]
-    for chunk in linkResponse.iter_content(100000):
-        writeFile = open(os.path.join('link_list', nameURL), 'wb')
-    writeFile.close
