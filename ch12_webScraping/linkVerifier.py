@@ -26,14 +26,15 @@ for tag in tagO:
     link = tag.get('href')
     if link == '/':
         continue
-    print(f'url is {url}')
-    print(f'href is {link}')
-    print(f'both is {url}{link}')
-    linkResponse = requests.get(url + link)
+    if link.startswith('/') == True:
+        linkResponse = requests.get(url + link)
+    elif link.startswith('http') == True:
+        linkResponse = requests.get(url)
     linkResponse.raise_for_status()
     if linkResponse.status_code == 404:
         #TODO print a file in folder with list of 404 broken links
         print(f'''{url}{link} returned a 404 error and wasn't found''')
-    writeFile = open(url + link + '.html', 'wb')
+    writeFile = open(f'''{linkResponse}.html''', 'wb')
     for chunk in linkResponse.iter_content(100000):
         writeFile.write(chunk)
+    writeFile.close()
