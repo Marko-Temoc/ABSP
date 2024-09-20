@@ -17,6 +17,7 @@ bsO = bs4.BeautifulSoup(responseO.text, 'html.parser')
 #list of Tag objects for each a element
 tagO = bsO.select('a[href]')
 
+os.makedirs('link_list', exist_ok=True)
 #iterate through tag list and try to download every link
 for tag in tagO:
     link = tag.get('href')
@@ -32,3 +33,6 @@ for tag in tagO:
         print(f'''{newURL} returned a 404 error and wasn't found''')
     if linkResponse.status_code == 403:
         print(f'''{newURL} returned a 403 error and was forbidden''')
+    writeFile = open(os.path.join('link_list', os.path.basename(newURL) + '.html'), 'w')
+    writeFile.write(linkResponse.text)
+    writeFile.close()
